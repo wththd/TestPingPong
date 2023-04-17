@@ -18,7 +18,7 @@ namespace PingPongGame.Scripts.Infrastructure.Factories
             this.instantiator = instantiator;
             this.parentTransform = parentTransform;
         }
-        
+
         public MainMenu CreateMainMenuUI()
         {
             var mainMenu = instantiator.InstantiatePrefabForComponent<MainMenu>(elementsContainer.MainMenuPrefab, parentTransform);
@@ -35,6 +35,24 @@ namespace PingPongGame.Scripts.Infrastructure.Factories
         {
             var gameMode = instantiator.InstantiatePrefabForComponent<GameModeScreen>(elementsContainer.GameModeScreen, parentTransform);
             return gameMode;
+        }
+
+        public GamePauseScreen CreateGamePauseScreen()
+        {
+            var gamePauseScreen = instantiator.InstantiatePrefabForComponent<GamePauseScreen>(elementsContainer.GamePauseScreen, parentTransform);
+            return gamePauseScreen;
+        }
+        
+        public GameCountdownScreen CreateGameCountdownScreen()
+        {
+            var gameCountdown = instantiator.InstantiatePrefabForComponent<GameCountdownScreen>(elementsContainer.GameCountdownScreen, parentTransform);
+            return gameCountdown;
+        }
+        
+        public GamePlayingScreen CreateGamePlayingScreen()
+        {
+            var gameCountdown = instantiator.InstantiatePrefabForComponent<GamePlayingScreen>(elementsContainer.GamePlayingScreen, parentTransform);
+            return gameCountdown;
         }
     }
 }

@@ -26,7 +26,6 @@ namespace PingPongGame.Scripts.Infrastructure.States.MenuStates
 
         public override void ExitState()
         {
-            Debug.Log("MenuState exit");
         }
     }
 }

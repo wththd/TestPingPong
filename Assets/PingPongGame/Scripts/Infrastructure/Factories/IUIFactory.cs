@@ -7,5 +7,8 @@ namespace PingPongGame.Scripts.Infrastructure.Factories
         MainMenu CreateMainMenuUI();
         CustomizeBallScreen CreateCustomizeBallScreen();
         GameModeScreen CreateGameModeScreen();
+        GameCountdownScreen CreateGameCountdownScreen();
+        GamePauseScreen CreateGamePauseScreen();
+        GamePlayingScreen CreateGamePlayingScreen();
     }
 }

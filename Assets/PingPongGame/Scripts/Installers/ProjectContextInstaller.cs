@@ -16,7 +16,6 @@ namespace PingPongGame.Scripts.Installers
             Container.Bind<ICoroutineRunner>().FromInstance(this);
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
             Container.Bind<IGameStateSaver>().To<GameStateSaver>().AsSingle();
-            Container.Bind<GameStatesProvider>().AsSingle();
             Container.Bind<GameConfig>().AsSingle().NonLazy();
 
             GameStateMachineInstaller.Install(Container);

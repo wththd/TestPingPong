@@ -5,22 +5,26 @@ using PingPongGame.Scripts.Infrastructure.StateMachine;
 using PingPongGame.Scripts.Infrastructure.States;
 using PingPongGame.Scripts.Infrastructure.States.MenuStates;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace PingPongGame.Scripts.Infrastructure.UIElements
 {
     public class MainMenu : MonoBehaviour
     {
+        [SerializeField] 
+        private Button continueButton;
+        
         private MenuStateMachine menuStateMachine;
-        private IUIFactory uiFactory;
         private GameConfig gameConfig;
         
         [Inject]
-        private void Init(MenuStateMachine menuStateMachine, IUIFactory uiFactory, GameConfig gameConfig)
+        private void Init(MenuStateMachine menuStateMachine, GameConfig gameConfig)
         {
             this.menuStateMachine = menuStateMachine;
-            this.uiFactory = uiFactory;
             this.gameConfig = gameConfig;
+
+            continueButton.interactable = this.gameConfig.CurrentGameProgress != null;
         }
 
         public void OnNewGameClick()

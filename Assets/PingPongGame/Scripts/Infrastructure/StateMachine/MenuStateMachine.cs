@@ -1,45 +1,30 @@
 ﻿using PingPongGame.Scripts.Infrastructure.States.MenuStates;
+using PingPongGame.Scripts.Infrastructure.States.ProjectStates;
 using UnityEngine;
 using Zenject;
 
 namespace PingPongGame.Scripts.Infrastructure.StateMachine
 {
-    public class MenuStateMachine : StateMachine, IInitializable
+    public class MenuStateMachine : StateMachine<MenuStatesProvider>, IInitializable
     {
-        public StateWithoutIntent CurrentState;
-
-        private IStateProvider stateProvider;
-
-        protected MenuStateMachine(MenuStatesProvider stateProvider)
+#if UNITY_EDITOR
+        // Field injection just for editor for correct bootstrap
+        [Inject]
+        private GameStateMachine gameStateMachine;
+#endif
+        protected MenuStateMachine(MenuStatesProvider stateProvider) : base(stateProvider)
         {
-            this.stateProvider = stateProvider;
-        }
-
-        public override void SetState<TState, TStateIntent>(TStateIntent intent = default(TStateIntent))
-        {
-            if (CurrentState != null)
-            {
-                CurrentState.ExitState();
-            }
-
-            var state = (State<TStateIntent>)stateProvider.GetState<TState>();
-            state.SetIntent(intent);
-            CurrentState = state;
-            CurrentState.EnterState();
-        }
-    
-        public override void SetState<TState>()
-        {
-            CurrentState?.ExitState();
-
-            var state = stateProvider.GetState<TState>();
-            CurrentState = state;
-            CurrentState.EnterState();
         }
 
         public void Initialize()
         {
-            Debug.Log("Init");
+#if UNITY_EDITOR
+            if (gameStateMachine.CurrentState is not MainMenuState)
+            {
+                return;
+            }
+#endif
+            Debug.Log($"Init {nameof(MenuStateMachine)}");
             SetState<MenuState>();
         }
     }

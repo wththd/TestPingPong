@@ -1,7 +1,8 @@
-﻿namespace PingPongGame.Scripts.Infrastructure.StateMachine
+﻿using UnityEngine;
+
+namespace PingPongGame.Scripts.Infrastructure.StateMachine
 {
     public class MenuStatesProvider : StateProvider
     {
-        
     }
 }

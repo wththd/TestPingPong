@@ -11,7 +11,6 @@ namespace PingPongGame.Scripts.Installers
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle().WithArguments(sceneCanvas);
-            Container.Bind<MenuStatesProvider>().AsSingle();
 
             MenuStateMachineInstaller.Install(Container);
         }

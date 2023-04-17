@@ -8,6 +8,7 @@ namespace PingPongGame.Scripts.Installers
     {
         public override void InstallBindings()
         {
+            Container.Bind<GameStatesProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle().NonLazy();
             Container.Bind<BootstrapState>().AsSingle().NonLazy();
             Container.Bind<MainMenuState>().AsSingle().NonLazy();

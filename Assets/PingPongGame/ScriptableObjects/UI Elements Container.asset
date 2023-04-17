@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuPrefab: {fileID: 9122114299438518784, guid: 24ad34c9b3aea644a95d2f6373ed8cdd, type: 3}
   CustomizeBallScreen: {fileID: 7915615238714658971, guid: c50efbd80a6ed1348a21616ed840b129, type: 3}
+  GameModeScreen: {fileID: 4820838518162321440, guid: 5018bcc04a8f95e45b26ffb7e38da14c, type: 3}
+  GamePauseScreen: {fileID: 7931651270330078544, guid: 7e03664c25ada754bb54e45a477f69d0, type: 3}
+  GameCountdownScreen: {fileID: 2674300063895806526, guid: 3f619f1a1b0d39f43935dcbb8e02083a, type: 3}
+  GamePlayingScreen: {fileID: 7391367015606947455, guid: 163aa8661d50929429509da8df79188e, type: 3}

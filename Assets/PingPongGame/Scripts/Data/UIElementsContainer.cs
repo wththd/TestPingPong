@@ -9,5 +9,8 @@ namespace PingPongGame.Scripts.Data
         public MainMenu MainMenuPrefab;
         public CustomizeBallScreen CustomizeBallScreen;
         public GameModeScreen GameModeScreen;
+        public GamePauseScreen GamePauseScreen;
+        public GameCountdownScreen GameCountdownScreen;
+        public GamePlayingScreen GamePlayingScreen;
     }
 }
