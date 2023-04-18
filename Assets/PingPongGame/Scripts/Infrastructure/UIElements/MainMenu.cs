@@ -1,8 +1,7 @@
 ﻿using PingPongGame.Scripts.Data;
-using PingPongGame.Scripts.Infrastructure.Factories;
+using PingPongGame.Scripts.Infrastructure.SaveSystem;
 using PingPongGame.Scripts.Infrastructure.StateIntents;
 using PingPongGame.Scripts.Infrastructure.StateMachine;
-using PingPongGame.Scripts.Infrastructure.States;
 using PingPongGame.Scripts.Infrastructure.States.MenuStates;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,15 +15,15 @@ namespace PingPongGame.Scripts.Infrastructure.UIElements
         private Button continueButton;
         
         private MenuStateMachine menuStateMachine;
-        private GameConfig gameConfig;
+        private IGameStateSaver gameStateSaver;
         
         [Inject]
-        private void Init(MenuStateMachine menuStateMachine, GameConfig gameConfig)
+        private void Init(MenuStateMachine menuStateMachine, IGameStateSaver gameStateSaver)
         {
             this.menuStateMachine = menuStateMachine;
-            this.gameConfig = gameConfig;
+            this.gameStateSaver = gameStateSaver;
 
-            continueButton.interactable = this.gameConfig.CurrentGameProgress != null;
+            continueButton.interactable = this.gameStateSaver.CurrentConfig.HasProgress;
         }
 
         public void OnNewGameClick()
@@ -39,7 +38,7 @@ namespace PingPongGame.Scripts.Infrastructure.UIElements
 
         public void OnCustomizeClick()
         {
-            menuStateMachine?.SetState<CustomizeBallState, CustomizeBallStateIntent>(new CustomizeBallStateIntent{ BallConfig = gameConfig.BallConfig });
+            menuStateMachine?.SetState<CustomizeBallState, CustomizeBallStateIntent>(new CustomizeBallStateIntent{ BallConfig = gameStateSaver.CurrentConfig.BallConfig });
         }
     }
 }

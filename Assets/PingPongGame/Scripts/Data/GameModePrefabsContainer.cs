@@ -9,5 +9,6 @@ namespace PingPongGame.Scripts.Data
         public Ball BallPrefab;
         public Board BoardPrefab;
         public PlayerRocket PlayerRocketPrefab;
+        public AIRocket AIRocketPrefab;
     }
 }

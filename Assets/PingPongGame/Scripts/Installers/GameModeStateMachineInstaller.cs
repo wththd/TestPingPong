@@ -13,7 +13,8 @@ namespace PingPongGame.Scripts.Installers
             Container.Bind<CountdownState>().AsSingle().NonLazy();
             Container.Bind<LoadLevelState>().AsSingle().NonLazy();
             Container.Bind<PauseMenuState>().AsSingle().NonLazy();
-            Container.Bind<GamePlayingState>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GamePlayingState>().AsSingle().NonLazy();
+            Container.Bind<GameEndState>().AsSingle().NonLazy();
         }
     }
 }

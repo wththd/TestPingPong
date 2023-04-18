@@ -18,3 +18,4 @@ MonoBehaviour:
   GamePauseScreen: {fileID: 7931651270330078544, guid: 7e03664c25ada754bb54e45a477f69d0, type: 3}
   GameCountdownScreen: {fileID: 2674300063895806526, guid: 3f619f1a1b0d39f43935dcbb8e02083a, type: 3}
   GamePlayingScreen: {fileID: 7391367015606947455, guid: 163aa8661d50929429509da8df79188e, type: 3}
+  GameEndScreen: {fileID: 431400223023494009, guid: e09e9c1e6d8e0a04c9a66689e16f4280, type: 3}

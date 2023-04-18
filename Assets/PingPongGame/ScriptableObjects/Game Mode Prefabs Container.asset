@@ -15,3 +15,4 @@ MonoBehaviour:
   BallPrefab: {fileID: 3924075406909479441, guid: f4b00d4bcdf1c4748922eae736b6ea4f, type: 3}
   BoardPrefab: {fileID: 6623640125370887728, guid: 9a42a140d24b91f49947d32f4bc2a9dd, type: 3}
   PlayerRocketPrefab: {fileID: 4513349488459664875, guid: 6607bbb3f5484424ab5f989be7d61e00, type: 3}
+  AIRocketPrefab: {fileID: 3360197821799021535, guid: 4cc2855c764d49c43b754e0d776c9d4e, type: 3}

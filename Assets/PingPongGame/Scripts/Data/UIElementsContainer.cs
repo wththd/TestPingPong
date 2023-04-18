@@ -12,5 +12,6 @@ namespace PingPongGame.Scripts.Data
         public GamePauseScreen GamePauseScreen;
         public GameCountdownScreen GameCountdownScreen;
         public GamePlayingScreen GamePlayingScreen;
+        public GameEndScreen GameEndScreen;
     }
 }

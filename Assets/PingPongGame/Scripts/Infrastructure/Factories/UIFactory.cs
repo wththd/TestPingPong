@@ -54,5 +54,11 @@ namespace PingPongGame.Scripts.Infrastructure.Factories
             var gameCountdown = instantiator.InstantiatePrefabForComponent<GamePlayingScreen>(elementsContainer.GamePlayingScreen, parentTransform);
             return gameCountdown;
         }
+        
+        public GameEndScreen CreateGameEndScreen()
+        {
+            var gameEndScreen = instantiator.InstantiatePrefabForComponent<GameEndScreen>(elementsContainer.GameEndScreen, parentTransform);
+            return gameEndScreen;
+        }
     }
 }

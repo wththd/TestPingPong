@@ -9,10 +9,19 @@ namespace PingPongGame.Scripts.Installers
     {
         [SerializeField]
         private UIElementsContainer elementsContainer;
+        [SerializeField] 
+        private GeneralConfig generalConfig;
+        [SerializeField]
+        private SinglePlayerLevelConfigsContainer singlePlayerLevelConfigsContainer;
+        [SerializeField] 
+        private MultiPlayerLevelConfigsContainer multiPlayerLevelConfigsContainer;
         
         public override void InstallBindings()
         {
             Container.BindInstance(elementsContainer);
+            Container.BindInstance(generalConfig);
+            Container.BindInstance(singlePlayerLevelConfigsContainer);
+            Container.BindInstance(multiPlayerLevelConfigsContainer);
         }
     }
 }

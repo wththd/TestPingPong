@@ -6,5 +6,6 @@
         void Resume();
         bool RegisterPausable(IPausable pausable);
         void UnregisterPausable(IPausable pausable);
+        public bool IsPaused { get; }
     }
 }

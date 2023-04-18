@@ -12,7 +12,6 @@ namespace PingPongGame.Scripts.Infrastructure.StateMachine
 
         public void Initialize()
         {
-            Debug.Log($"Init {nameof(GameStateMachine)}");
             SetState<BootstrapState>();
         }
     }

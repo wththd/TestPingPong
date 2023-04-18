@@ -10,5 +10,6 @@ namespace PingPongGame.Scripts.Infrastructure.Factories
         GameCountdownScreen CreateGameCountdownScreen();
         GamePauseScreen CreateGamePauseScreen();
         GamePlayingScreen CreateGamePlayingScreen();
+        GameEndScreen CreateGameEndScreen();
     }
 }

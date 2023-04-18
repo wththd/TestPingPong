@@ -10,7 +10,7 @@ namespace PingPongGame.Scripts.Installers
         {
             Container.Bind<GameStatesProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle().NonLazy();
-            Container.Bind<BootstrapState>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<BootstrapState>().AsSingle().NonLazy();
             Container.Bind<MainMenuState>().AsSingle().NonLazy();
             Container.Bind<GameState>().AsSingle().NonLazy();
         }

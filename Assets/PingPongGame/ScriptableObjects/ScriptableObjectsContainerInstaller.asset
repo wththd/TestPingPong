@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: ScriptableObjectsContainerInstaller
   m_EditorClassIdentifier: 
   elementsContainer: {fileID: 11400000, guid: 220830b10ac86c842bebb3b396e2b6d3, type: 2}
+  generalConfig: {fileID: 11400000, guid: 69a7357afa1ea4445af70fcc6bac58a9, type: 2}
+  singlePlayerLevelConfigsContainer: {fileID: 11400000, guid: f7049c4cd09b25a40b2435599872befd, type: 2}
+  multiPlayerLevelConfigsContainer: {fileID: 11400000, guid: 00a1484759c6ca3458c7b7de15ea5f91, type: 2}

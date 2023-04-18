@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PingPongGame.Scripts
+namespace PingPongGame.Scripts.Infrastructure.Entities
 {
     public interface IRocketController
     {

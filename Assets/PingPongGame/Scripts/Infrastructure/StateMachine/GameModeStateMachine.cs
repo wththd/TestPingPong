@@ -1,4 +1,7 @@
-﻿using PingPongGame.Scripts.Infrastructure.States.GameModeStates;
+﻿using PingPongGame.Scripts.Data;
+using PingPongGame.Scripts.Infrastructure.SaveSystem;
+using PingPongGame.Scripts.Infrastructure.StateIntents;
+using PingPongGame.Scripts.Infrastructure.States.GameModeStates;
 using PingPongGame.Scripts.Infrastructure.States.ProjectStates;
 using UnityEngine;
 using Zenject;
@@ -12,8 +15,11 @@ namespace PingPongGame.Scripts.Infrastructure.StateMachine
         [Inject]
         private GameStateMachine gameStateMachine;
 #endif
-        public GameModeStateMachine(GameModeStateProvider stateProvider) : base(stateProvider)
+        private IGameStateSaver gameStateSaver;
+        
+        public GameModeStateMachine(GameModeStateProvider stateProvider, IGameStateSaver gameStateSaver) : base(stateProvider)
         {
+            this.gameStateSaver = gameStateSaver;
         }
         
         public void Initialize()
@@ -24,8 +30,10 @@ namespace PingPongGame.Scripts.Infrastructure.StateMachine
                 return;
             }
 #endif
-            Debug.Log($"Init {nameof(GameModeStateMachine)}");
-            SetState<LoadLevelState>();
+            SetState<LoadLevelState, LoadLevelStateIntent>(new LoadLevelStateIntent
+            {
+                GameMode = gameStateSaver.CurrentConfig.CurrentGameMode
+            });
         }
     }
 }

@@ -4,7 +4,7 @@ using PingPongGame.Scripts.Infrastructure.StateMachine;
 
 namespace PingPongGame.Scripts.Infrastructure.States.ProjectStates
 {
-    public class GameState : State<GameStateIntent>
+    public class GameState : State<EmptyStateIntent>
     {
         private ISceneLoader sceneLoader;
         

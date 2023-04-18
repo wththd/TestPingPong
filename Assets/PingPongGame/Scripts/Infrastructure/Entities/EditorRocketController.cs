@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace PingPongGame.Scripts
+namespace PingPongGame.Scripts.Infrastructure.Entities
 {
     public class EditorRocketController : IRocketController
     {

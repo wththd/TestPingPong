@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace PingPongGame.Scripts
+namespace PingPongGame.Scripts.Infrastructure
 {
     public interface ICoroutineRunner
     {

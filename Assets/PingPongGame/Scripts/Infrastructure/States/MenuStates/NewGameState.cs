@@ -1,11 +1,11 @@
-﻿using PingPongGame.Scripts.Infrastructure.Factories;
-using PingPongGame.Scripts.Infrastructure.StateIntents;
+﻿using PingPongGame.Scripts.Data;
+using PingPongGame.Scripts.Infrastructure.Factories;
+using PingPongGame.Scripts.Infrastructure.SaveSystem;
 using PingPongGame.Scripts.Infrastructure.StateMachine;
-using PingPongGame.Scripts.Infrastructure.States.MenuStates;
 using PingPongGame.Scripts.Infrastructure.States.ProjectStates;
 using PingPongGame.Scripts.Infrastructure.UIElements;
 
-namespace PingPongGame.Scripts.Infrastructure.States
+namespace PingPongGame.Scripts.Infrastructure.States.MenuStates
 {
     public class NewGameState : State<EmptyStateIntent>
     {
@@ -13,14 +13,16 @@ namespace PingPongGame.Scripts.Infrastructure.States
         private IUIFactory uiFactory;
         private MenuStateMachine menuStateMachine;
         private GameModeScreen screen;
+        private IGameStateSaver gameStateSaver;
         
-        public NewGameState(MenuStatesProvider stateProvider, GameStateMachine gameStateMachine, IUIFactory uiFactory, MenuStateMachine menuStateMachine)
+        public NewGameState(MenuStatesProvider stateProvider, GameStateMachine gameStateMachine, IUIFactory uiFactory, MenuStateMachine menuStateMachine, IGameStateSaver gameStateSaver)
         {
             stateProvider.RegisterState(this);
 
             this.uiFactory = uiFactory;
             this.gameStateMachine = gameStateMachine;
             this.menuStateMachine = menuStateMachine;
+            this.gameStateSaver = gameStateSaver;
         }
         
         public override void EnterState()
@@ -32,23 +34,9 @@ namespace PingPongGame.Scripts.Infrastructure.States
 
         private void OnGameStateChosen(GameModeScreen.GameMode mode)
         {
-            switch (mode)
-            {
-                case GameModeScreen.GameMode.Single:
-                    gameStateMachine.SetState<MainMenuState>();
-                    gameStateMachine.SetState<GameState, GameStateIntent>(new GameStateIntent
-                    {
-                        GameMode = mode
-                    });
-                    return;
-                case GameModeScreen.GameMode.AI:
-                    gameStateMachine.SetState<GameState, GameStateIntent>(new GameStateIntent
-                    {
-                        GameMode = mode
-                    });
-                    return;
-            }
-            
+            gameStateSaver.CurrentConfig.ClearCurrentGameProgress();
+            gameStateSaver.CurrentConfig.CurrentGameMode = mode;
+            gameStateMachine.SetState<GameState>();
             ExitState();
         }
 

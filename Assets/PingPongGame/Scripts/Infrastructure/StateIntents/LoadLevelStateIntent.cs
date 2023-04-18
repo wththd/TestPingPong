@@ -2,7 +2,7 @@
 
 namespace PingPongGame.Scripts.Infrastructure.StateIntents
 {
-    public class GameStateIntent
+    public class LoadLevelStateIntent
     {
         public GameModeScreen.GameMode GameMode;
     }

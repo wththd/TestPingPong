@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using PingPongGame.Scripts.Infrastructure.Entities;
 using PingPongGame.Scripts.Infrastructure.UIElements;
 using Zenject;
 

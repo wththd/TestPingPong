@@ -24,7 +24,6 @@ namespace PingPongGame.Scripts.Infrastructure.StateMachine
                 return;
             }
 #endif
-            Debug.Log($"Init {nameof(MenuStateMachine)}");
             SetState<MenuState>();
         }
     }

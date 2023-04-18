@@ -24,7 +24,8 @@ namespace PingPongGame.Scripts.Installers
 #else
             Container.Bind<IRocketController>().To<MobileRocketController>().AsSingle();
 #endif
-            
+            Container.Bind<AIRocketController>().AsSingle();
+            Container.Bind<SharedGameData>().AsSingle();
             GameModeStateMachineInstaller.Install(Container);
 
             InstallFactories();
@@ -35,6 +36,7 @@ namespace PingPongGame.Scripts.Installers
             Container.BindFactory<BallFactory.Settings, Transform, Ball, BallFactory>().FromComponentInNewPrefab(prefabsContainer.BallPrefab);
             Container.BindFactory<PlayerRocketFactory.Settings, PlayerRocket, PlayerRocketFactory>().FromComponentInNewPrefab(prefabsContainer.PlayerRocketPrefab);
             Container.BindFactory<BoardFactory.Settings, Board, BoardFactory>().FromComponentInNewPrefab(prefabsContainer.BoardPrefab).UnderTransform(boardRoot);
+            Container.BindFactory<AIRocketFactory.Settings, AIRocket, AIRocketFactory>().FromComponentInNewPrefab(prefabsContainer.AIRocketPrefab);
         }
     }
 }
