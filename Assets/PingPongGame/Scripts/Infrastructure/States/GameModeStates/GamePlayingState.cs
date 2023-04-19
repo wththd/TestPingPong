@@ -48,7 +48,7 @@ namespace PingPongGame.Scripts.Infrastructure.States.GameModeStates
 
         private void BallOnHitRocket()
         {
-            if (sharedGameData.CurrentMode == GameModeScreen.GameMode.Single)
+            if (gameStateSaver.CurrentConfig.CurrentGameMode == GameModeScreen.GameMode.Single)
             {
                 gameStateSaver.AddSingleLevelProgress();
             }

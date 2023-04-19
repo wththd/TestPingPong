@@ -25,7 +25,7 @@ namespace PingPongGame.Scripts.Infrastructure.Entities
         [Inject]
         private void Init(BoardFactory.Settings settings)
         {
-            plane.transform.localScale = new Vector3(settings.PlaneScale.X, 1, settings.PlaneScale.Y);
+            plane.transform.localScale = new Vector3(settings.PlaneScale.x, 1, settings.PlaneScale.y);
             oppositeLooseTrigger.OnBallReached += OppositeTriggerOnBallReached;
             playerLooseTrigger.OnBallReached += PlayerTriggerOnBallReached;
         }

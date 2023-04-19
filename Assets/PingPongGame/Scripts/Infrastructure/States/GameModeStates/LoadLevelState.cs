@@ -38,7 +38,10 @@ namespace PingPongGame.Scripts.Infrastructure.States.GameModeStates
         public override void EnterState()
         {
             DisposeCurrentEntities();
-            var board = boardFactory.Create(new BoardFactory.Settings());
+            var board = boardFactory.Create(new BoardFactory.Settings
+            {
+                PlaneScale = GetPlaneScale()
+            });
             sharedGameData.Board = board;
             var randomVector = new Vector3(Random.Range(0.1f, 0.4f), 0, Random.Range(0.5f, 0.8f));
             randomVector = Random.value > 0.5 ? randomVector : -randomVector;
@@ -124,6 +127,11 @@ namespace PingPongGame.Scripts.Infrastructure.States.GameModeStates
                 sharedGameData.OppositeRocket.Dispose();
                 sharedGameData.OppositeRocket = null;
             }
+        }
+
+        private Vector2 GetPlaneScale()
+        {
+            return Camera.main.aspect == 0.5f ? new Vector2(0.9f, 1.8f) : new Vector2(0.9f, 1.6f);
         }
     }
 }

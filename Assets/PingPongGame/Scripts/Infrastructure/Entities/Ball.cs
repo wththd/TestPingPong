@@ -30,6 +30,8 @@ namespace PingPongGame.Scripts.Infrastructure.Entities
         private IPauseHandler pauseHandler;
         private IGameStateSaver gameStateSaver;
         private Material currentMaterial;
+        private static readonly int Point = Shader.PropertyToID("_ContactPoint");
+        private static readonly int Contact = Shader.PropertyToID("_Contact");
 
         [Inject]
         private void Init(BallFactory.Settings settings, Transform rootTransform, IPauseHandler pauseHandler, IGameStateSaver gameStateSaver)
@@ -87,10 +89,13 @@ namespace PingPongGame.Scripts.Infrastructure.Entities
                     rb.AddForce(hitForce * rocketSpeed * rb.velocity.normalized, ForceMode.Impulse);
                 }
                 
-                currentMaterial.SetVector("_ContactPoint", other.GetContact(0).point);
-                currentMaterial.SetFloat("_Contact", 1);
-                
                 HitRocket?.Invoke();
+            }
+
+            if (!other.collider.CompareTag("Board"))
+            {
+                currentMaterial.SetVector(Point, transform.InverseTransformPoint(other.GetContact(0).point));
+                currentMaterial.SetFloat(Contact, Time.timeSinceLevelLoad);
             }
         }
 

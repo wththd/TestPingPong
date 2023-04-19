@@ -4,30 +4,25 @@ Shader "Custom/BallShader"
     {
         _Color ("Color", Color) = (1,1,1,1)
         _ContactColor ("Contact Color", Color) = (1,1,1,1)
-        _ContactPoint("ContactPoint", Vector) = (0,0,0)
-        [Toggle] _Contact("Contacted?", Float) = 0
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _ContactPoint("ContactPoint", Vector) = (-10,-10,10)
+        _Contact("Contacted time", Float) = 0
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _Distance ("Distance", Float) = 0.8
+        _AnimTime ("AnimTime", Float) = 1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 200
-
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard fullforwardshadows vertex:vert
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
-
-        sampler2D _MainTex;
-
+        
         struct Input
         {
-            float2 uv_MainTex;
-            float3 worldPos;
+            float distFromHitPoint;
         };
 
         half _Glossiness;
@@ -36,24 +31,28 @@ Shader "Custom/BallShader"
         fixed4 _Color;
         fixed4 _ContactColor;
         float _Contact;
+        float _Distance;
+        float _AnimTime;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
-        UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
-        UNITY_INSTANCING_BUFFER_END(Props)
+        struct appdata
+        {
+            float4 vertex : POSITION;
+            float3 normal : NORMAL;
+        };
+
+        void vert(inout appdata v, out Input o)
+        {
+            UNITY_INITIALIZE_OUTPUT(Input, o);
+            o.distFromHitPoint = _Contact != 0 ? distance(_ContactPoint, v.vertex.xyz) : _Distance + 1;
+        }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            const bool shouldConnect = _Contact == 1 && distance(_ContactPoint, IN.worldPos) < 1;
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = shouldConnect ? _ContactColor : c.rgb;
-            // Metallic and smoothness come from slider variables
+            float blend = IN.distFromHitPoint < _Distance ? lerp(1, 0, IN.distFromHitPoint / _Distance) : 0;
+            blend *= lerp(1, 0, saturate((_Time.y - _Contact) / _AnimTime));
+            o.Albedo = IN.distFromHitPoint < _Distance ? lerp (_Color, _ContactColor, blend) : _Color.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
         }
         ENDCG
     }
